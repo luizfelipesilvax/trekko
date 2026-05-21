@@ -1,0 +1,39 @@
+{
+  "name": "Trekko",
+  "short_name": "Trekko",
+  "description": "Descubra destinos incríveis, ofertas exclusivas e roteiros personalizados.",
+  "start_url": "./login.html",
+  "display": "standalone",
+  "background_color": "#0d1620",
+  "theme_color": "#14b8a6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Ccircle cx='96' cy='96' r='96' fill='%2314b8a6'/%3E%3Ctext x='96' y='128' font-size='100' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3ET%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='256' fill='%2314b8a6'/%3E%3Ctext x='256' y='340' font-size='260' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3ET%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Entrar",
+      "short_name": "Login",
+      "url": "./login.html",
+      "description": "Entrar na sua conta Trekko"
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "url": "./dashboard.html",
+      "description": "Ver seu painel de destinos"
+    }
+  ]
+}
