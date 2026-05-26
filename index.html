@@ -229,7 +229,7 @@
       </button>
     </div>
     <div class="price-filter-wrap">
-      <span class="price-filter-label">💰 Faixa de preço:</span>
+      <span class="price-filter-label">Faixa de preço:</span>
       <div class="price-range-inputs">
         <input class="price-input" id="price-min" type="number" placeholder="R$ Mín" min="0"/>
         <span style="color:#8fa3b8;font-weight:700">—</span>
@@ -240,7 +240,7 @@
     </div>
     
     <div class="price-filter-wrap reveal" id="price-filter-wrap">
-      <span class="price-filter-label">💰 Filtrar por preço:</span>
+      <span class="price-filter-label">Filtrar por preço:</span>
       <div class="price-inputs">
         <span style="font-size:12px;color:#8fa3b8;font-weight:600">R$</span>
         <input class="price-input" id="price-min" type="number" placeholder="Mín" min="0"/>
@@ -280,9 +280,9 @@
 <section class="ofertas-section reveal">
   <div class="ofertas-inner">
     <div class="section-title-row">
-      <div class="section-title">Ofertas da <em>Semana</em> 🏷️</div>
+      <div class="section-title">Ofertas da <em>Semana</em></div>
       <div class="countdown-badge">
-        ⏱️ Acaba em:
+        Acaba em:
         <span class="cd-unit" id="cd-d">00</span>d
         <span class="cd-sep">:</span>
         <span class="cd-unit" id="cd-h">00</span>h
@@ -294,7 +294,7 @@
     </div>
     <div class="ofertas-grid">
       <div class="oferta-card" onclick="applyOffer('Rio de Janeiro','v1')">
-        <div class="oferta-emoji">🌊</div>
+        <div class="oferta-emoji"></div>
         <div class="oferta-info">
           <div class="oferta-dest">Rio de Janeiro</div>
           <div class="oferta-meta">São Paulo (GRU) → GIG · GOL</div>
@@ -303,7 +303,7 @@
         <div class="oferta-tag">-50%</div>
       </div>
       <div class="oferta-card" onclick="applyOffer('Florianópolis','v4')">
-        <div class="oferta-emoji">🏖️</div>
+        <div class="oferta-emoji"></div>
         <div class="oferta-info">
           <div class="oferta-dest">Florianópolis</div>
           <div class="oferta-meta">São Paulo (GRU) → FLN · LATAM</div>
@@ -312,7 +312,7 @@
         <div class="oferta-tag">-46%</div>
       </div>
       <div class="oferta-card" onclick="applyOffer('Salvador','v2')">
-        <div class="oferta-emoji">🌴</div>
+        <div class="oferta-emoji"></div>
         <div class="oferta-info">
           <div class="oferta-dest">Salvador</div>
           <div class="oferta-meta">São Paulo (GRU) → SSA · Azul</div>
@@ -328,7 +328,7 @@
 <section class="ranking-section reveal">
   <div class="ranking-inner">
     <div class="section-title-row">
-      <div class="section-title">Mais visitados pelos <em>brasileiros</em> 🏆</div>
+      <div class="section-title">Mais visitados pelos <em>brasileiros</em> </div>
       <div style="font-size:13px;color:#8fa3b8;font-weight:600">Últimos 30 dias</div>
     </div>
     <div class="ranking-list" id="ranking-list"></div>
@@ -346,23 +346,23 @@
 </div>
 
 <!-- ══ POINTS HUD ══ -->
-<div class="points-hud" id="points-hud" onclick="showBadges()" title="Seus pontos Trekko">
+<zdiv class="points-hud" id="points-hud" onclick="showBadges()" title="Seus pontos Trekko">
   <span class="points-icon">⭐</span>
-  <div class="points-info">
+  <zdiv class="points-info">
     <span class="points-val" id="points-val">0</span>
     <span class="points-label">pontos Trekko</span>
-  </div>
-</div>
+  </zdiv>
+</divz>
 
 <div class="compare-btn-wrap" id="compare-btn-wrap">
   <button class="compare-toggle" onclick="toggleCompareMode()">
-    ⚖️ Comparar <span class="compare-badge" id="compare-badge">0</span>
+    Comparar <span class="compare-badge" id="compare-badge">0</span>
   </button>
 </div>
 <div class="compare-modal" id="compare-modal">
   <div class="compare-panel">
     <div class="compare-header">
-      <div class="compare-title">⚖️ Comparação de Destinos</div>
+      <div class="compare-title">Comparação de Destinos</div>
       <button class="compare-close" onclick="closeCompare()">✕</button>
     </div>
     <div id="compare-content"></div>
@@ -377,16 +377,16 @@
     <p class="newsletter-sub">Cadastre-se e receba as melhores promoções de voos e hospedagens pelo Brasil direto no seu e-mail. Cancele quando quiser.</p>
     <div class="newsletter-form">
       <input class="newsletter-input" id="nl-email" type="email" placeholder="Seu melhor e-mail"/>
-      <button class="newsletter-btn" onclick="subscribeNewsletter()">Quero receber 🚀</button>
+      <button class="newsletter-btn" onclick="subscribeNewsletter()">Quero receber</button>
     </div>
     <div class="newsletter-prefs">
-      <button class="nl-pref active" onclick="this.classList.toggle('active')">✈️ Voos</button>
-      <button class="nl-pref active" onclick="this.classList.toggle('active')">🏨 Hotéis</button>
-      <button class="nl-pref" onclick="this.classList.toggle('active')">🚌 Ônibus</button>
-      <button class="nl-pref" onclick="this.classList.toggle('active')">🏡 Chalés</button>
-      <button class="nl-pref" onclick="this.classList.toggle('active')">🌿 Ecoturismo</button>
+      <button class="nl-pref active" onclick="this.classList.toggle('active')">Voos</button>
+      <button class="nl-pref active" onclick="this.classList.toggle('active')">Hotéis</button>
+      <button class="nl-pref" onclick="this.classList.toggle('active')">Ônibus</button>
+      <button class="nl-pref" onclick="this.classList.toggle('active')">Chalés</button>
+      <button class="nl-pref" onclick="this.classList.toggle('active')">Ecoturismo</button>
     </div>
-    <div class="newsletter-success" id="nl-success">✅ Perfeito! Você receberá as melhores ofertas em breve. Bem-vindo ao clube! 🎉</div>
+    <div class="newsletter-success" id="nl-success">Perfeito! Você receberá as melhores ofertas em breve. Bem-vindo ao clube! 🎉</div>
   </div>
 </section>
 
@@ -409,10 +409,10 @@
 </div>
 
 <!-- ── POINTS TOAST ── -->
-<div class="points-toast" id="pts-toast">
+<xdiv class="points-toast" id="pts-toast">
   <span id="pts-toast-icon">⭐</span>
   <span id="pts-toast-msg">+10 pontos!</span>
-</div>
+</divx>
 
 
 <!-- PWA Install Banner -->
@@ -428,7 +428,7 @@
 
 <div id="chat-bubble">
   <div id="chat-popup">
-    <div style="font-size:15px;font-weight:800;color:white;margin-bottom:6px;">Posso ajudar? 👋</div>
+    <div style="font-size:15px;font-weight:800;color:white;margin-bottom:6px;">Posso ajudar?</div>
     <div style="font-size:13px;color:#8fa3b8;margin-bottom:14px;line-height:1.5;">Procurando o destino perfeito? Fale com nosso assistente!</div>
     <button style="width:100%;background:var(--blue);border:none;border-radius:9px;color:white;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;padding:10px;cursor:pointer;">Iniciar conversa</button>
   </div>
