@@ -113,14 +113,14 @@
     </div>
 
     <button class="mobile-filter-btn" onclick="document.getElementById('filters-panel').classList.toggle('mobile-open')">
-      🎛️ Filtros
+      Filtros
     </button>
 
     <div class="results-layout">
       <!-- Filters -->
       <div class="filters-panel" id="filters-panel">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-          <div style="font-size:16px;font-weight:900;color:white">🎛️ Filtros</div>
+          <div style="font-size:16px;font-weight:900;color:white">Filtros</div>
           <button onclick="clearAllFilters()" style="background:none;border:none;color:rgba(255,255,255,.4);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer">Limpar</button>
           <button class="back-btn" onclick="document.getElementById('filters-panel').classList.remove('mobile-open')" style="display:none;padding:4px 10px" id="close-filters-btn">✕</button>
         </div>
@@ -129,27 +129,27 @@
           <div class="filter-title">Categoria</div>
           <div class="filter-opt active" onclick="toggleFilter(this,'cat','voos')" data-key="cat" data-val="voos">
             <div class="filter-check">✓</div>
-            <span class="filter-opt-label">✈️ Voos</span>
+            <span class="filter-opt-label">Voos</span>
             <span class="filter-opt-count">18</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'cat','hoteis')" data-key="cat" data-val="hoteis">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🏨 Hotéis</span>
+            <span class="filter-opt-label">Hotéis</span>
             <span class="filter-opt-count">16</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'cat','onibus')" data-key="cat" data-val="onibus">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🚌 Ônibus</span>
+            <span class="filter-opt-label">Ônibus</span>
             <span class="filter-opt-count">16</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'cat','chales')" data-key="cat" data-val="chales">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🏡 Chalés</span>
+            <span class="filter-opt-label">Chalés</span>
             <span class="filter-opt-count">16</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'cat','atracoes')" data-key="cat" data-val="atracoes">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🌿 Atrações</span>
+            <span class="filter-opt-label">Atrações</span>
             <span class="filter-opt-count">16</span>
           </div>
         </div>
@@ -195,15 +195,15 @@
           <div class="filter-title">Tag</div>
           <div class="filter-opt" onclick="toggleFilter(this,'tag','hot')" data-key="tag" data-val="hot">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🔥 Popular</span>
+            <span class="filter-opt-label">Popular</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'tag','new')" data-key="tag" data-val="new">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">✨ Novo</span>
+            <span class="filter-opt-label">Novo</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'tag','promo')" data-key="tag" data-val="promo">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🏷️ Promoção</span>
+            <span class="filter-opt-label">Promoção</span>
           </div>
         </div>
       </div>
@@ -304,7 +304,7 @@
         return;
       }
       list.innerHTML = items.map(function(item){
-        var tagHtml = item.tag ? '<span class="badge '+(item.tag==='hot'?'br2':item.tag==='new'?'bg':'bo')+'">'+(item.tag==='hot'?'🔥 Popular':item.tag==='new'?'✨ Novo':'🏷️ Promo')+'</span>' : '';
+        var tagHtml = item.tag ? '<span class="badge '+(item.tag==='hot'?'br2':item.tag==='new'?'bg':'bo')+'">'+(item.tag==='hot'?'Popular':item.tag==='new'?'Novo':'Promo')+'</span>' : '';
         var priceHtml = item.price > 0 ? 'R$ '+item.price.toLocaleString('pt-BR') : 'Gratuito';
         return '<div class="result-card" onclick="goToReserva(''+item.name+'',''+item.id+'')">'
           +'<img class="result-img" src="https://source.unsplash.com/280x160/?'+encodeURIComponent(item.name)+',brazil" onerror="this.style.background='#1e3a5f';this.src=''"/>'
