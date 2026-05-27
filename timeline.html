@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Roteiros — Trekko</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="timeline.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <img src="uploads/trekko-logo2-transparent.png" alt="Trekko" onerror="this.style.display='none'"/>
+    <div class="logo-word">Trek<span>ko</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← Início</a>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-title">Meus Roteiros</div>
+      <button class="btn-new-trip" onclick="openNewModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Novo roteiro
+      </button>
+    </div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="main-area">
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">🗺️</div>
+      <div class="empty-title">Nenhum roteiro selecionado</div>
+      <div class="empty-sub">Crie um novo roteiro ou selecione um da lista para começar a planejar sua viagem.</div>
+      <button class="btn-toolbar primary" style="margin-top:8px" onclick="openNewModal()">
+        Criar meu primeiro roteiro
+      </button>
+    </div>
+    <!-- editor é injetado via JS -->
+  </main>
+
+</div>
+
+<!-- MODAL NOVO ROTEIRO -->
+<div class="modal-overlay" id="modal-new" onclick="if(event.target===this)closeModal('modal-new')">
+  <div class="modal">
+    <div class="modal-title">Criar novo roteiro</div>
+    <div class="modal-sub">Comece do zero ou use um template pronto.</div>
+
+    <div class="modal-label">Escolha um template (opcional)</div>
+    <div class="templates-grid" id="tpl-grid"></div>
+
+    <div class="modal-label">Nome do roteiro</div>
+    <input class="modal-input" id="new-trip-name" placeholder="Ex: Rio de Janeiro — Semana Santa" />
+    <div class="modal-row">
+      <div style="flex:1">
+        <div class="modal-label">Data de início</div>
+        <input class="modal-input" id="new-trip-start" type="date" />
+      </div>
+      <div style="flex:1">
+        <div class="modal-label">Duração</div>
+        <input class="modal-input" id="new-trip-days" type="number" min="1" max="30" value="5" placeholder="Dias" />
+      </div>
+    </div>
+    <div class="modal-btn-row">
+      <button class="modal-btn cancel" onclick="closeModal('modal-new')">Cancelar</button>
+      <button class="modal-btn confirm" onclick="createTrip()">Criar roteiro ✈️</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ADICIONAR ATIVIDADE -->
+<div class="modal-overlay" id="modal-activity" onclick="if(event.target===this)closeModal('modal-activity')">
+  <div class="modal">
+    <div class="modal-title">Adicionar atividade</div>
+    <div class="modal-sub">Preencha os detalhes da atividade.</div>
+
+    <div class="modal-label">Tipo</div>
+    <div class="type-grid">
+      <div class="type-opt sel" data-type="atracao" onclick="selectType(this)">🏛️ Atração</div>
+      <div class="type-opt" data-type="hotel" onclick="selectType(this)">🏨 Hotel</div>
+      <div class="type-opt" data-type="restaurante" onclick="selectType(this)">🍽️ Restaurante</div>
+      <div class="type-opt" data-type="transporte" onclick="selectType(this)">🚗 Transporte</div>
+      <div class="type-opt" data-type="livre" onclick="selectType(this)">⭐ Livre</div>
+    </div>
+
+    <div class="modal-label">Nome da atividade</div>
+    <input class="modal-input" id="act-name-inp" placeholder="Ex: Christ Redentor, Almoço no Garcia, Voo GRU-GIG..." />
+
+    <div class="modal-row">
+      <div style="flex:1">
+        <div class="modal-label">Horário</div>
+        <input class="modal-input" id="act-time-inp" type="time" value="09:00" />
+      </div>
+      <div style="flex:1">
+        <div class="modal-label">Custo estimado (R$)</div>
+        <input class="modal-input" id="act-cost-inp" type="number" placeholder="0" min="0" />
+      </div>
+    </div>
+
+    <div class="modal-label">Observações (opcional)</div>
+    <input class="modal-input" id="act-note-inp" placeholder="Ex: Reservar com antecedência, levar protetor..." />
+
+    <div class="modal-btn-row">
+      <button class="modal-btn cancel" onclick="closeModal('modal-activity')">Cancelar</button>
+      <button class="modal-btn confirm" onclick="confirmAddActivity()">Adicionar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="./timeline.js"></script>
+</body>
+</html>
