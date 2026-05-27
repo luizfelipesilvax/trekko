@@ -170,7 +170,7 @@
       else {
         grid.innerHTML = favs.map(function(id){
           var imgKey = DEST_IMGS_MAP[id] || 'brazil,travel';
-          return '<div class="fav-card"><img class="fav-card-img" src="https://source.unsplash.com/300x150/?'+imgKey+'" onerror="this.style.background='#1e3a5f';this.src=''"/><div class="fav-card-body"><div class="fav-card-name">Destino '+id.toUpperCase()+'</div><div class="fav-card-meta">Salvo nos favoritos</div></div></div>';
+          return '<div class="fav-card"><img class="fav-card-img" src="https://source.unsplash.com/300x150/?'+imgKey+'" onerror="this.style.background=\'#1e3a5f\';this.src=\'\'"/><div class="fav-card-body"><div class="fav-card-name">Destino '+id.toUpperCase()+'</div><div class="fav-card-meta">Salvo nos favoritos</div></div></div>';
         }).join('');
       }
 
@@ -227,7 +227,7 @@
       var reader = new FileReader();
       reader.onload = function(e){
         var av = document.getElementById('profile-avatar');
-        av.innerHTML = '<img src="'+e.target.result+'" style="width:90px;height:90px;border-radius:50%;object-fit:cover"/><div class="profile-avatar-edit" onclick="document.getElementById('avatar-input').click()">✏️</div><input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="updateAvatar(this)"/>';
+        av.innerHTML = '<img src="'+e.target.result+'" style="width:90px;height:90px;border-radius:50%;object-fit:cover"/><div class="profile-avatar-edit" onclick="document.getElementById(\'avatar-input\').click()">✏️</div><input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="updateAvatar(this)"/>';
       };
       reader.readAsDataURL(input.files[0]);
     }
