@@ -969,9 +969,11 @@ function shareNative(name, price) {
 }
 function showToast(msg) {
   var t = document.getElementById('pts-toast');
-  document.getElementById('pts-toast-msg').textContent = msg;
-  document.getElementById('pts-toast-icon').textContent = '💬';
-  t.classList.add('show'); setTimeout(function(){t.classList.remove('show');}, 2500);
+  if (t) {
+    document.getElementById('pts-toast-msg').textContent = msg;
+    document.getElementById('pts-toast-icon').textContent = '💬';
+    t.classList.add('show'); setTimeout(function(){t.classList.remove('show');}, 2500);
+  }
 }
 
 /* ══════════════ PATCH renderDest to add click for modal ══════════════ */
@@ -1001,12 +1003,15 @@ renderDest = function(cat) {
 function addPoints(n, icon, msg) {
   points += n;
   localStorage.setItem('trekko-pts', points);
-  document.getElementById('pts-val').textContent = points;
+  var ptsValEl = document.getElementById('pts-val');
+  if (ptsValEl) ptsValEl.textContent = points;
   var t = document.getElementById('pts-toast');
-  document.getElementById('pts-toast-icon').textContent = icon;
-  document.getElementById('pts-toast-msg').textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 2500);
+  if (t) {
+    document.getElementById('pts-toast-icon').textContent = icon;
+    document.getElementById('pts-toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 2500);
+  }
   // Check badges
   if (points >= 50 && earnedBadges.indexOf('explorer') < 0) earnBadge('explorer');
 }
@@ -1030,7 +1035,8 @@ function showBadges() {
 }
 
 // Initialize points display
-document.getElementById('pts-val').textContent = points;
+var initPtsVal = document.getElementById('pts-val');
+if (initPtsVal) initPtsVal.textContent = points;
 
 /* ══════════════ PRICE FILTER ══════════════ */
 var priceMin = 0, priceMax = Infinity;
@@ -2178,5 +2184,3 @@ if (destInputEl) {
     }
   });
 }
-
-
