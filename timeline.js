@@ -2,11 +2,25 @@
 // STATE
 // ══════════════════════════════════════════════
 let state = {
-  trips: [],
-  activeId: null,
+  trips: JSON.parse(localStorage.getItem('trekko-trips')) || [],
+  activeId: localStorage.getItem('trekko-active-trip') || null,
   pendingDayIdx: null,
   selectedTpl: null,
 };
+
+function saveState() {
+  localStorage.setItem('trekko-trips', JSON.stringify(state.trips));
+  if (state.activeId) {
+    localStorage.setItem('trekko-active-trip', state.activeId);
+  } else {
+    localStorage.removeItem('trekko-active-trip');
+  }
+}
+
+if (state.trips.length > 0 && (!state.activeId || !state.trips.find(t => t.id === state.activeId))) {
+  state.activeId = state.trips[0].id;
+  saveState();
+}
 
 // ── TEMPLATES ──────────────────────────────────
 const TEMPLATES = [
@@ -711,6 +725,7 @@ function autoResize(el) {
 // ══════════════════════════════════════════════
 function selectTrip(id) {
   state.activeId = id;
+  saveState();
   renderSidebar();
   renderEditor();
 }
@@ -789,6 +804,7 @@ function createTrip() {
   };
   state.trips.unshift(trip);
   state.activeId = trip.id;
+  saveState();
   closeModal("modal-new");
   renderSidebar();
   renderEditor();
@@ -799,6 +815,7 @@ function deleteTrip() {
   if (!confirm("Excluir este roteiro?")) return;
   state.trips = state.trips.filter((t) => t.id !== state.activeId);
   state.activeId = state.trips[0]?.id || null;
+  saveState();
   renderSidebar();
   renderEditor();
   showToast("Roteiro excluído", "🗑️");
@@ -808,6 +825,7 @@ function updateTripName(val) {
   const t = getTrip();
   if (!t) return;
   t.name = val;
+  saveState();
   renderSidebar();
 }
 
@@ -815,6 +833,7 @@ function updateTripDate(field, val) {
   const t = getTrip();
   if (!t) return;
   t[field === "start" ? "startDate" : "endDate"] = val;
+  saveState();
   renderEditor();
 }
 
@@ -822,6 +841,7 @@ function updateBudgetGoal(val) {
   const t = getTrip();
   if (!t) return;
   t.budgetGoal = val;
+  saveState();
   // atualiza painel sem re-render completo
   renderEditor();
 }
@@ -831,6 +851,7 @@ function addDay() {
   const t = getTrip();
   if (!t) return;
   t.days.push({ id: uid(), label: `Dia ${t.days.length + 1}`, activities: [] });
+  saveState();
   renderEditor();
   showToast("Dia adicionado", "📅");
 }
@@ -843,6 +864,7 @@ function deleteDay(dayId) {
     return;
   }
   t.days = t.days.filter((d) => d.id !== dayId);
+  saveState();
   renderEditor();
   showToast("Dia removido", "🗑️");
 }
@@ -859,6 +881,7 @@ function duplicateDay(dayId) {
     activities: orig.activities.map((a) => ({ ...a, id: uid() })),
   };
   t.days.splice(idx + 1, 0, copy);
+  saveState();
   renderEditor();
   showToast("Dia duplicado", "⧉");
 }
@@ -869,6 +892,7 @@ function updateDayLabel(dayId, val) {
   const d = t.days.find((d) => d.id === dayId);
   if (!d) return;
   d.label = val;
+  saveState();
 }
 
 // ── ATIVIDADES ──
@@ -911,6 +935,7 @@ function confirmAddActivity() {
   const d = t.days.find((d) => d.id === _pendingDayId);
   if (!d) return;
   d.activities.push({ id: uid(), type, name, time, cost, note });
+  saveState();
   closeModal("modal-activity");
   renderEditor();
   showToast("Atividade adicionada!", TYPE_ICONS[type]);
@@ -922,6 +947,7 @@ function deleteActivity(dayId, actId) {
   const d = t.days.find((d) => d.id === dayId);
   if (!d) return;
   d.activities = d.activities.filter((a) => a.id !== actId);
+  saveState();
   renderEditor();
 }
 
@@ -933,6 +959,7 @@ function updateActivity(dayId, actId, field, val) {
   const a = d.activities.find((a) => a.id === actId);
   if (!a) return;
   a[field] = field === "cost" ? parseFloat(val) || 0 : val;
+  saveState();
   if (field === "cost") {
     // atualiza painel de budget sem re-render
     refreshBudgetPanel();
@@ -1019,6 +1046,7 @@ function initDayDrag() {
       if (fromIdx < 0 || toIdx < 0) return;
       const [moved] = trip.days.splice(fromIdx, 1);
       trip.days.splice(toIdx, 0, moved);
+      saveState();
       renderEditor();
       showToast("Dia reordenado!", "↕️");
     });
@@ -1067,6 +1095,7 @@ function initActivityDrag() {
       );
       const [moved] = fromDay.activities.splice(fromIdx, 1);
       toDay.activities.splice(toIdx, 0, moved);
+      saveState();
       renderEditor();
       showToast("Atividade movida!", "↕️");
     });
@@ -1077,23 +1106,26 @@ function initActivityDrag() {
 // INIT — carrega roteiro de exemplo
 // ══════════════════════════════════════════════
 (function init() {
-  // Popula com o template do Rio como exemplo inicial
-  const tpl = TEMPLATES[0];
-  const today = new Date().toISOString().split("T")[0];
-  const trip = {
-    id: uid(),
-    name: "Roteiro Rio de Janeiro",
-    fromTpl: true,
-    startDate: today,
-    budgetGoal: "3000",
-    days: tpl.data.map((d) => ({
+  if (state.trips.length === 0) {
+    // Popula com o template do Rio como exemplo inicial
+    const tpl = TEMPLATES[0];
+    const today = new Date().toISOString().split("T")[0];
+    const trip = {
       id: uid(),
-      label: d.label,
-      activities: d.activities.map((a) => ({ ...a, id: uid() })),
-    })),
-  };
-  state.trips.push(trip);
-  state.activeId = trip.id;
+      name: "Roteiro Rio de Janeiro",
+      fromTpl: true,
+      startDate: today,
+      budgetGoal: "3000",
+      days: tpl.data.map((d) => ({
+        id: uid(),
+        label: d.label,
+        activities: d.activities.map((a) => ({ ...a, id: uid() })),
+      })),
+    };
+    state.trips.push(trip);
+    state.activeId = trip.id;
+    saveState();
+  }
   renderSidebar();
   renderEditor();
 })();

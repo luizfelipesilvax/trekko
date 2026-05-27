@@ -40,6 +40,7 @@
     <!-- Tabs -->
     <div class="tabs">
       <div class="tab active" onclick="switchProfileTab('favs',this)">❤️ Favoritos</div>
+      <div class="tab" onclick="switchProfileTab('roteiros',this)">🗺️ Roteiros</div>
       <div class="tab" onclick="switchProfileTab('history',this)">🕐 Histórico</div>
       <div class="tab" onclick="switchProfileTab('badges',this)">🏆 Badges</div>
       <div class="tab" onclick="switchProfileTab('edit',this)">⚙️ Editar perfil</div>
@@ -49,6 +50,13 @@
     <div class="tab-content active" id="tab-favs">
       <div class="fav-grid" id="fav-grid">
         <div style="grid-column:1/-1;text-align:center;padding:40px;color:#8fa3b8">Carregando favoritos...</div>
+      </div>
+    </div>
+
+    <!-- Roteiros -->
+    <div class="tab-content" id="tab-roteiros">
+      <div class="fav-grid" id="roteiros-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:#8fa3b8">Carregando roteiros...</div>
       </div>
     </div>
 
@@ -174,6 +182,17 @@
         }).join('');
       }
 
+      // Render roteiros
+      var roteiros = JSON.parse(localStorage.getItem('trekko-trips')||'[]');
+      var rGrid = document.getElementById('roteiros-grid');
+      if(!roteiros.length){ rGrid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:#8fa3b8">Nenhum roteiro salvo ainda.<br><a href="roteiros.html" style="color:var(--green);font-weight:700">Explorar roteiros →</a></div>'; }
+      else {
+        rGrid.innerHTML = roteiros.map(function(r){
+          var numDias = r.days ? r.days.length : 0;
+          return '<div class="fav-card" style="cursor:pointer" onclick="abrirRoteiro(\''+r.id+'\')"><img class="fav-card-img" src="https://loremflickr.com/300/150/' + encodeURIComponent(r.name.split(' ')[0]) + '" onerror="this.style.background=\'#1e3a5f\';this.src=\'\'"/><div class="fav-card-body"><div class="fav-card-name">' + r.name + '</div><div class="fav-card-meta">' + numDias + ' dias · ' + (r.startDate || '') + '</div></div></div>';
+        }).join('');
+      }
+
       // Render history
       var histList = document.getElementById('history-list');
       if(!recents.length){ histList.innerHTML='<div style="text-align:center;padding:40px;color:#8fa3b8">Nenhuma busca recente.</div>'; }
@@ -190,6 +209,11 @@
         return '<div class="badge-item'+(earned?' earned':'')+'"><span class="badge-emoji">'+b.icon+'</span><div class="badge-name">'+b.name+'</div><div class="badge-desc">'+b.desc+'</div>'+(earned?'<div style="margin-top:8px"><span class="badge bg">✅ Conquistado</span></div>':'')+'</div>';
       }).join('');
     });
+
+    function abrirRoteiro(id) {
+      localStorage.setItem('trekko-active-trip', id);
+      window.location.href = 'timeline.html';
+    }
 
     function switchProfileTab(id, el){
       document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});

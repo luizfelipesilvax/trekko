@@ -47,6 +47,36 @@ var ROTEIROS = [
 
 var current = 'Todos';
 
+function verRota(rId) {
+  var r = ROTEIROS.find(function(item) { return item.id === rId; });
+  if (!r) return;
+  var trips = JSON.parse(localStorage.getItem('trekko-trips') || '[]');
+  var existing = trips.find(function(t) { return t.roteiroId === r.id; });
+  if (!existing) {
+    var newTrip = {
+      id: '_' + Math.random().toString(36).substr(2, 9),
+      roteiroId: r.id,
+      name: r.title,
+      startDate: new Date().toISOString().split("T")[0],
+      budgetGoal: r.preco.replace(/\D/g, ''),
+      fromTpl: true,
+      days: r.dias.map(function(dStr, i) {
+        return {
+          id: '_' + Math.random().toString(36).substr(2, 9),
+          label: 'Dia ' + (i + 1),
+          activities: [{ id: '_' + Math.random().toString(36).substr(2, 9), type: 'atracao', name: dStr, time: '09:00', cost: 0, note: '' }]
+        };
+      })
+    };
+    trips.unshift(newTrip);
+    localStorage.setItem('trekko-trips', JSON.stringify(trips));
+    localStorage.setItem('trekko-active-trip', newTrip.id);
+  } else {
+    localStorage.setItem('trekko-active-trip', existing.id);
+  }
+  window.location.href = 'timeline.html';
+}
+
 function filtrar(tipo, btn) {
   current = tipo;
   document.querySelectorAll('.fil').forEach(function(b){b.classList.remove('active');});
@@ -77,7 +107,7 @@ function renderGrid() {
     
     var body = document.createElement('div');
     body.className = 'rcard-body';
-    body.innerHTML = '<div class="rcard-title">'+r.title+'</div><div class="rcard-dest">📍 '+r.dest+' · '+r.duracao+'</div><div class="rcard-tags">'+tagsHTML+'</div><div class="rcard-days">'+daysHTML+'</div><div class="rcard-footer"><div class="rcard-price">'+r.preco+'</div><button class="rcard-btn" onclick="window.location.href=\'timeline.html\'">Ver rota ✈️</button></div>';
+    body.innerHTML = '<div class="rcard-title">'+r.title+'</div><div class="rcard-dest">📍 '+r.dest+' · '+r.duracao+'</div><div class="rcard-tags">'+tagsHTML+'</div><div class="rcard-days">'+daysHTML+'</div><div class="rcard-footer"><div class="rcard-price">'+r.preco+'</div><button class="rcard-btn" onclick="verRota('+r.id+')">Ver rota ✈️</button></div>';
     
     div.appendChild(thumb);
     div.appendChild(body);
