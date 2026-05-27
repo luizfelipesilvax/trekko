@@ -35,15 +35,15 @@
 
 <script>
 var ROTEIROS = [
-  {id:1,title:'Rio Clássico',dest:'Rio de Janeiro, RJ',img:'https://source.unsplash.com/600x400/?rio-janeiro,copacabana',tipo:['Praia','Cultura'],nivel:'facil',dias:['Cristo Redentor','Copacabana','Santa Teresa'],preco:'R$ 149/voo',duracao:'5 dias'},
-  {id:2,title:'Nordeste Selvagem',dest:'Fortaleza + Jericoacoara, CE',img:'https://source.unsplash.com/600x400/?jericoacoara,duna,lagoa',tipo:['Praia','Aventura'],nivel:'medio',dias:['Jericoacoara','Lagoa Azul','Lençóis'],preco:'R$ 319/voo',duracao:'7 dias'},
-  {id:3,title:'Serra Gaúcha Romântica',dest:'Gramado + Canela, RS',img:'https://source.unsplash.com/600x400/?gramado,chale,inverno',tipo:['Montanha','Gastronômico'],nivel:'facil',dias:['Gramado','Canela','Bento Gonçalves'],preco:'R$ 199/voo',duracao:'4 dias'},
-  {id:4,title:'Amazônia Profunda',dest:'Manaus + Rio Negro, AM',img:'https://source.unsplash.com/600x400/?amazon,jungle,manaus',tipo:['Natureza','Aventura'],nivel:'aventura',dias:['Teatro Amazonas','Encontro das Águas','Selva'],preco:'R$ 499/voo',duracao:'6 dias'},
-  {id:5,title:'Minas Históricas',dest:'Ouro Preto + Tiradentes, MG',img:'https://source.unsplash.com/600x400/?ouro-preto,colonial,minas',tipo:['Cultura','Gastronômico'],nivel:'facil',dias:['Ouro Preto','Mariana','Tiradentes'],preco:'R$ 79/ônibus',duracao:'4 dias'},
-  {id:6,title:'Pantanal Safari',dest:'Campo Grande + Bonito, MS',img:'https://source.unsplash.com/600x400/?pantanal,wildlife,safari',tipo:['Natureza','Aventura'],nivel:'medio',dias:['Pantanal','Bonito','Gruta Azul'],preco:'R$ 399/voo',duracao:'6 dias'},
-  {id:7,title:'Ilha Grande Paradise',dest:'Angra dos Reis + Ilha Grande, RJ',img:'https://source.unsplash.com/600x400/?ilha-grande,beach,rio',tipo:['Praia','Natureza'],nivel:'facil',dias:['Lagoa Azul','Lopes Mendes','Dois Rios'],preco:'R$ 30/ferry',duracao:'4 dias'},
-  {id:8,title:'Cataratas + Missões',dest:'Foz do Iguaçu + Missões, PR',img:'https://source.unsplash.com/600x400/?iguazu-falls,cataratas,waterfall',tipo:['Natureza','Cultura'],nivel:'facil',dias:['Cataratas BR','Cataratas AR','Missões'],preco:'R$ 80/ônibus',duracao:'4 dias'},
-  {id:9,title:'Chapada dos Deuses',dest:'Chapada Diamantina, BA',img:'https://source.unsplash.com/600x400/?chapada-diamantina,cachoeira',tipo:['Natureza','Aventura'],nivel:'aventura',dias:['Cachoeira da Fumaça','Morro do Pai Inácio','Poço Encantado'],preco:'R$ 289/voo',duracao:'5 dias'},
+  {id:1,title:'Rio Clássico',dest:'Rio de Janeiro, RJ',img:'https://loremflickr.com/600/400/riodejaneiro,copacabana',tipo:['Praia','Cultura'],nivel:'facil',dias:['Cristo Redentor','Copacabana','Santa Teresa'],preco:'R$ 149/voo',duracao:'5 dias'},
+  {id:2,title:'Nordeste Selvagem',dest:'Fortaleza + Jericoacoara, CE',img:'https://loremflickr.com/600/400/jericoacoara,duna,lagoa',tipo:['Praia','Aventura'],nivel:'medio',dias:['Jericoacoara','Lagoa Azul','Lençóis'],preco:'R$ 319/voo',duracao:'7 dias'},
+  {id:3,title:'Serra Gaúcha Romântica',dest:'Gramado + Canela, RS',img:'https://loremflickr.com/600/400/gramado,chale,inverno',tipo:['Montanha','Gastronômico'],nivel:'facil',dias:['Gramado','Canela','Bento Gonçalves'],preco:'R$ 199/voo',duracao:'4 dias'},
+  {id:4,title:'Amazônia Profunda',dest:'Manaus + Rio Negro, AM',img:'https://loremflickr.com/600/400/amazon,jungle,manaus',tipo:['Natureza','Aventura'],nivel:'aventura',dias:['Teatro Amazonas','Encontro das Águas','Selva'],preco:'R$ 499/voo',duracao:'6 dias'},
+  {id:5,title:'Minas Históricas',dest:'Ouro Preto + Tiradentes, MG',img:'https://loremflickr.com/600/400/ouropreto,colonial,minas',tipo:['Cultura','Gastronômico'],nivel:'facil',dias:['Ouro Preto','Mariana','Tiradentes'],preco:'R$ 79/ônibus',duracao:'4 dias'},
+  {id:6,title:'Pantanal Safari',dest:'Campo Grande + Bonito, MS',img:'https://loremflickr.com/600/400/pantanal,wildlife,safari',tipo:['Natureza','Aventura'],nivel:'medio',dias:['Pantanal','Bonito','Gruta Azul'],preco:'R$ 399/voo',duracao:'6 dias'},
+  {id:7,title:'Ilha Grande Paradise',dest:'Angra dos Reis + Ilha Grande, RJ',img:'https://loremflickr.com/600/400/ilhagrande,beach,rio',tipo:['Praia','Natureza'],nivel:'facil',dias:['Lagoa Azul','Lopes Mendes','Dois Rios'],preco:'R$ 30/ferry',duracao:'4 dias'},
+  {id:8,title:'Cataratas + Missões',dest:'Foz do Iguaçu + Missões, PR',img:'https://loremflickr.com/600/400/iguazufalls,cataratas,waterfall',tipo:['Natureza','Cultura'],nivel:'facil',dias:['Cataratas BR','Cataratas AR','Missões'],preco:'R$ 80/ônibus',duracao:'4 dias'},
+  {id:9,title:'Chapada dos Deuses',dest:'Chapada Diamantina, BA',img:'https://loremflickr.com/600/400/chapadadiamantina,cachoeira',tipo:['Natureza','Aventura'],nivel:'aventura',dias:['Cachoeira da Fumaça','Morro do Pai Inácio','Poço Encantado'],preco:'R$ 289/voo',duracao:'5 dias'},
 ];
 
 var current = 'Todos';
