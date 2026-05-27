@@ -444,8 +444,6 @@ function TrekkoTweaks() {
     root.style.setProperty('--green', p.green);
     root.style.setProperty('--orange', p.orange);
     document.body.style.background = p.bg;
-    const nav = document.getElementById('main-nav');
-    if (nav) nav.style.background = p.navy;
     const overlay = document.querySelector('.hero-overlay');
     if (overlay) overlay.style.background = `linear-gradient(to right, ${p.overlayFrom} 0%, ${p.overlayMid} 38%, rgba(14,28,47,.1) 70%, transparent 100%)`;
     const bg = document.querySelector('.hero-bg');
@@ -456,9 +454,6 @@ function TrekkoTweaks() {
     if (title) { title.style.fontSize = hs.titleSize; title.style.textAlign = hs.align; }
     if (sub) sub.style.display = hs.subtitle ? '' : 'none';
     if (content) { content.style.maxWidth = hs.maxW; content.style.padding = hs.pad; content.style.textAlign = hs.align; }
-    document.querySelectorAll('.cat.active').forEach(c => c.style.background = p.blue);
-    document.querySelectorAll('.btn-buscar').forEach(b => b.style.background = p.orange);
-    document.querySelectorAll('.btn-criar').forEach(b => b.style.background = p.green);
   }, [values]);
 
   return (
