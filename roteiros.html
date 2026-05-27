@@ -64,7 +64,24 @@ function renderGrid() {
     div.className = 'rcard';
     var daysHTML = r.dias.map(function(d,i){return '<div class="rcard-day"><div class="rcard-day-n">Dia '+(i+1)+'</div><div class="rcard-day-txt">'+d+'</div></div>';}).join('');
     var tagsHTML = r.tipo.map(function(t){return '<span class="rcard-tag">'+t+'</span>';}).join('');
-    div.innerHTML = '<div class="rcard-thumb"><img class="rcard-img" src="'+r.img+'" alt="'+r.title+'" onerror="this.style.background=\'#1e3a5f\';this.src=\'\'"><span class="rcard-badge badge-'+r.nivel+'">'+(r.nivel==='facil'?'Fácil':r.nivel==='medio'?'Médio':'Aventura')+'</span></div><div class="rcard-body"><div class="rcard-title">'+r.title+'</div><div class="rcard-dest">📍 '+r.dest+' · '+r.duracao+'</div><div class="rcard-tags">'+tagsHTML+'</div><div class="rcard-days">'+daysHTML+'</div><div class="rcard-footer"><div class="rcard-price">'+r.preco+'</div><button class="rcard-btn" onclick="window.location.href=\'index.html\'">Ver rota ✈️</button></div></div>';
+    
+    var thumb = document.createElement('div');
+    thumb.className = 'rcard-thumb';
+    var img = document.createElement('img');
+    img.className = 'rcard-img';
+    img.src = r.img;
+    img.alt = r.title;
+    img.onerror = function() { this.style.background = '#1e3a5f'; this.src = ''; };
+    thumb.appendChild(img);
+    var badgeText = r.nivel === 'facil' ? 'Fácil' : (r.nivel === 'medio' ? 'Médio' : 'Aventura');
+    thumb.innerHTML += '<span class="rcard-badge badge-' + r.nivel + '">' + badgeText + '</span>';
+    
+    var body = document.createElement('div');
+    body.className = 'rcard-body';
+    body.innerHTML = '<div class="rcard-title">'+r.title+'</div><div class="rcard-dest">📍 '+r.dest+' · '+r.duracao+'</div><div class="rcard-tags">'+tagsHTML+'</div><div class="rcard-days">'+daysHTML+'</div><div class="rcard-footer"><div class="rcard-price">'+r.preco+'</div><button class="rcard-btn" onclick="window.location.href=\'index.html\'">Ver rota ✈️</button></div>';
+    
+    div.appendChild(thumb);
+    div.appendChild(body);
     grid.appendChild(div);
   });
 }
