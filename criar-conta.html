@@ -630,29 +630,6 @@ function spawnConfetti(){const colors=['#14b8a6','#22c55e','#06b6d4','#f59e0b','
   const _origGoNext=goNext;
   goNext=function(step,forward){_origGoNext(step,forward);updateProgress(step);};
 
-  // ── REDIRECT PROGRESS BAR ──
-  const _origFinish=finish;
-  finish=function(){
-    const btn=document.getElementById('btn-step3');
-    btn.classList.add('btn-loading');
-    setTimeout(()=>{
-      btn.classList.remove('btn-loading');
-      clearDraft();
-      document.getElementById('success-overlay').classList.add('show');
-      spawnConfetti();
-      let secs=4;
-      const msg=document.getElementById('redirect-msg');
-      msg.innerHTML='<div style="width:220px;margin:0 auto"><div style="height:4px;background:rgba(255,255,255,.2);border-radius:10px;overflow:hidden;margin-bottom:8px"><div id="redir-bar" style="height:100%;background:var(--teal);border-radius:10px;width:100%;transition:width 1s linear"></div></div><span>'+t('redirect_msg')+' '+secs+t('redirect_sec')+'</span></div>';
-      const iv=setInterval(()=>{
-        secs--;
-        const bar=document.getElementById('redir-bar');
-        if(bar)bar.style.width=((secs/4)*100)+'%';
-        const span=msg.querySelector('span');
-        if(span)span.textContent=t('redirect_msg')+' '+secs+t('redirect_sec');
-        if(secs<=0){clearInterval(iv);window.location.href='login.html';}
-      },1000);
-    },1400);
-  };
 
   // ── ANALYTICS ──
   const _stepStartTimes={};
@@ -826,3 +803,4 @@ function spawnConfetti(){const colors=['#14b8a6','#22c55e','#06b6d4','#f59e0b','
 </script>
 </body>
 </html>
+
