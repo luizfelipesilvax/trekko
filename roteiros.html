@@ -5,55 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Roteiros — Trekko</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--navy:#0e1c2f;--blue:#1a5cff;--green:#22c55e;--orange:#f59e0b}
-    body{font-family:'Nunito',sans-serif;background:#0b1623;color:white;min-height:100vh}
-    nav{position:sticky;top:0;z-index:100;background:#0e1c2f;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;box-shadow:0 2px 20px rgba(0,0,0,.3)}
-    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .logo-icon{width:40px;height:40px;border-radius:50%;overflow:hidden;background:#1e3a5f;display:flex;align-items:center;justify-content:center;font-size:20px}
-    .logo-word{font-size:20px;font-weight:900;color:white}.logo-word span{color:var(--green)}
-    .nav-back{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;padding:8px 16px;border-radius:8px;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:6px}
-    .hero{padding:60px 40px 40px;max-width:1100px;margin:0 auto}
-    .hero h1{font-size:clamp(36px,5vw,56px);font-weight:900;letter-spacing:-.5px;line-height:1.1}
-    .hero h1 em{font-style:normal;color:var(--green)}
-    .hero p{color:#8fa3b8;font-size:17px;margin-top:12px;line-height:1.6}
-    .filters-row{display:flex;gap:8px;flex-wrap:wrap;padding:0 40px;max-width:1100px;margin:0 auto 32px}
-    .fil{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;padding:7px 16px;border-radius:20px;cursor:pointer;transition:all .15s}
-    .fil:hover,.fil.active{background:var(--blue);border-color:var(--blue);color:white}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0 40px;max-width:1100px;margin:0 auto 60px}
-    .rcard{background:#0f1e2e;border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;cursor:pointer;transition:all .22s}
-    .rcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.5);border-color:rgba(255,255,255,.15)}
-    .rcard-img{height:180px;object-fit:cover;width:100%;display:block;background:#1e3a5f}
-    .rcard-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;text-transform:uppercase}
-    .badge-facil{background:#22c55e;color:white}
-    .badge-medio{background:#f59e0b;color:white}
-    .badge-aventura{background:#ef4444;color:white}
-    .rcard-thumb{position:relative}
-    .rcard-body{padding:18px 20px 20px}
-    .rcard-title{font-size:17px;font-weight:900;color:white;margin-bottom:4px}
-    .rcard-dest{font-size:13px;color:#8fa3b8;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-    .rcard-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-    .rcard-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
-    .rcard-days{display:flex;gap:0;margin-bottom:14px}
-    .rcard-day{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);padding:8px 10px;font-size:11px}
-    .rcard-day:first-child{border-radius:8px 0 0 8px}
-    .rcard-day:last-child{border-radius:0 8px 8px 0}
-    .rcard-day-n{font-weight:900;color:var(--blue);font-size:13px}
-    .rcard-day-txt{color:#8fa3b8;font-weight:600;margin-top:2px;font-size:10px}
-    .rcard-footer{display:flex;align-items:center;justify-content:space-between}
-    .rcard-price{font-size:15px;font-weight:900;color:var(--green)}
-    .rcard-btn{background:var(--blue);border:none;border-radius:8px;padding:8px 16px;color:white;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .2s}
-    .rcard-btn:hover{filter:brightness(1.1)}
-    @media(max-width:900px){.grid{grid-template-columns:1fr 1fr;padding:0 20px}.hero,.filters-row{padding-left:20px;padding-right:20px}}
-    @media(max-width:600px){.grid{grid-template-columns:1fr}}
-  </style>
+  <link rel="stylesheet" href="roteiros.css"/>
 </head>
 <body>
 <nav>
   <a href="index.html" class="logo">
-    <div class="logo-icon">🧭</div>
-    <div class="logo-word">Trek<span>ko</span></div>
+    <img src="uploads/trekko-logo2-transparent.png" alt="Trekko" style="height: 48px; width: 48px; object-fit: cover; border-radius: 50%;" />
   </a>
   <a href="index.html" class="nav-back">← Voltar ao início</a>
 </nav>
@@ -77,18 +34,48 @@
 
 <script>
 var ROTEIROS = [
-  {id:1,title:'Rio Clássico',dest:'Rio de Janeiro, RJ',img:'https://source.unsplash.com/600x400/?rio-janeiro,copacabana',tipo:['Praia','Cultura'],nivel:'facil',dias:['Cristo Redentor','Copacabana','Santa Teresa'],preco:'R$ 149/voo',duracao:'5 dias'},
-  {id:2,title:'Nordeste Selvagem',dest:'Fortaleza + Jericoacoara, CE',img:'https://source.unsplash.com/600x400/?jericoacoara,duna,lagoa',tipo:['Praia','Aventura'],nivel:'medio',dias:['Jericoacoara','Lagoa Azul','Lençóis'],preco:'R$ 319/voo',duracao:'7 dias'},
-  {id:3,title:'Serra Gaúcha Romântica',dest:'Gramado + Canela, RS',img:'https://source.unsplash.com/600x400/?gramado,chale,inverno',tipo:['Montanha','Gastronômico'],nivel:'facil',dias:['Gramado','Canela','Bento Gonçalves'],preco:'R$ 199/voo',duracao:'4 dias'},
-  {id:4,title:'Amazônia Profunda',dest:'Manaus + Rio Negro, AM',img:'https://source.unsplash.com/600x400/?amazon,jungle,manaus',tipo:['Natureza','Aventura'],nivel:'aventura',dias:['Teatro Amazonas','Encontro das Águas','Selva'],preco:'R$ 499/voo',duracao:'6 dias'},
-  {id:5,title:'Minas Históricas',dest:'Ouro Preto + Tiradentes, MG',img:'https://source.unsplash.com/600x400/?ouro-preto,colonial,minas',tipo:['Cultura','Gastronômico'],nivel:'facil',dias:['Ouro Preto','Mariana','Tiradentes'],preco:'R$ 79/ônibus',duracao:'4 dias'},
-  {id:6,title:'Pantanal Safari',dest:'Campo Grande + Bonito, MS',img:'https://source.unsplash.com/600x400/?pantanal,wildlife,safari',tipo:['Natureza','Aventura'],nivel:'medio',dias:['Pantanal','Bonito','Gruta Azul'],preco:'R$ 399/voo',duracao:'6 dias'},
-  {id:7,title:'Ilha Grande Paradise',dest:'Angra dos Reis + Ilha Grande, RJ',img:'https://source.unsplash.com/600x400/?ilha-grande,beach,rio',tipo:['Praia','Natureza'],nivel:'facil',dias:['Lagoa Azul','Lopes Mendes','Dois Rios'],preco:'R$ 30/ferry',duracao:'4 dias'},
-  {id:8,title:'Cataratas + Missões',dest:'Foz do Iguaçu + Missões, PR',img:'https://source.unsplash.com/600x400/?iguazu-falls,cataratas,waterfall',tipo:['Natureza','Cultura'],nivel:'facil',dias:['Cataratas BR','Cataratas AR','Missões'],preco:'R$ 80/ônibus',duracao:'4 dias'},
-  {id:9,title:'Chapada dos Deuses',dest:'Chapada Diamantina, BA',img:'https://source.unsplash.com/600x400/?chapada-diamantina,cachoeira',tipo:['Natureza','Aventura'],nivel:'aventura',dias:['Cachoeira da Fumaça','Morro do Pai Inácio','Poço Encantado'],preco:'R$ 289/voo',duracao:'5 dias'},
+  {id:1,title:'Rio Clássico',dest:'Rio de Janeiro, RJ',img:'https://loremflickr.com/600/400/riodejaneiro,copacabana',tipo:['Praia','Cultura'],nivel:'facil',dias:['Cristo Redentor','Copacabana','Santa Teresa'],preco:'R$ 149/voo',duracao:'5 dias'},
+  {id:2,title:'Nordeste Selvagem',dest:'Fortaleza + Jericoacoara, CE',img:'https://loremflickr.com/600/400/jericoacoara,duna,lagoa',tipo:['Praia','Aventura'],nivel:'medio',dias:['Jericoacoara','Lagoa Azul','Lençóis'],preco:'R$ 319/voo',duracao:'7 dias'},
+  {id:3,title:'Serra Gaúcha Romântica',dest:'Gramado + Canela, RS',img:'https://loremflickr.com/600/400/gramado,chale,inverno',tipo:['Montanha','Gastronômico'],nivel:'facil',dias:['Gramado','Canela','Bento Gonçalves'],preco:'R$ 199/voo',duracao:'4 dias'},
+  {id:4,title:'Amazônia Profunda',dest:'Manaus + Rio Negro, AM',img:'https://loremflickr.com/600/400/amazon,jungle,manaus',tipo:['Natureza','Aventura'],nivel:'aventura',dias:['Teatro Amazonas','Encontro das Águas','Selva'],preco:'R$ 499/voo',duracao:'6 dias'},
+  {id:5,title:'Minas Históricas',dest:'Ouro Preto + Tiradentes, MG',img:'https://loremflickr.com/600/400/ouropreto,colonial,minas',tipo:['Cultura','Gastronômico'],nivel:'facil',dias:['Ouro Preto','Mariana','Tiradentes'],preco:'R$ 79/ônibus',duracao:'4 dias'},
+  {id:6,title:'Pantanal Safari',dest:'Campo Grande + Bonito, MS',img:'https://loremflickr.com/600/400/pantanal,wildlife,safari',tipo:['Natureza','Aventura'],nivel:'medio',dias:['Pantanal','Bonito','Gruta Azul'],preco:'R$ 399/voo',duracao:'6 dias'},
+  {id:7,title:'Ilha Grande Paradise',dest:'Angra dos Reis + Ilha Grande, RJ',img:'https://loremflickr.com/600/400/ilhagrande,beach,rio',tipo:['Praia','Natureza'],nivel:'facil',dias:['Lagoa Azul','Lopes Mendes','Dois Rios'],preco:'R$ 30/ferry',duracao:'4 dias'},
+  {id:8,title:'Cataratas + Missões',dest:'Foz do Iguaçu + Missões, PR',img:'https://loremflickr.com/600/400/iguazufalls,cataratas,waterfall',tipo:['Natureza','Cultura'],nivel:'facil',dias:['Cataratas BR','Cataratas AR','Missões'],preco:'R$ 80/ônibus',duracao:'4 dias'},
+  {id:9,title:'Chapada dos Deuses',dest:'Chapada Diamantina, BA',img:'https://loremflickr.com/600/400/chapadadiamantina,cachoeira',tipo:['Natureza','Aventura'],nivel:'aventura',dias:['Cachoeira da Fumaça','Morro do Pai Inácio','Poço Encantado'],preco:'R$ 289/voo',duracao:'5 dias'},
 ];
 
 var current = 'Todos';
+
+function verRota(rId) {
+  var r = ROTEIROS.find(function(item) { return item.id === rId; });
+  if (!r) return;
+  var trips = JSON.parse(localStorage.getItem('trekko-trips') || '[]');
+  var existing = trips.find(function(t) { return t.roteiroId === r.id; });
+  if (!existing) {
+    var newTrip = {
+      id: '_' + Math.random().toString(36).substr(2, 9),
+      roteiroId: r.id,
+      name: r.title,
+      startDate: new Date().toISOString().split("T")[0],
+      budgetGoal: r.preco.replace(/\D/g, ''),
+      fromTpl: true,
+      days: r.dias.map(function(dStr, i) {
+        return {
+          id: '_' + Math.random().toString(36).substr(2, 9),
+          label: 'Dia ' + (i + 1),
+          activities: [{ id: '_' + Math.random().toString(36).substr(2, 9), type: 'atracao', name: dStr, time: '09:00', cost: 0, note: '' }]
+        };
+      })
+    };
+    trips.unshift(newTrip);
+    localStorage.setItem('trekko-trips', JSON.stringify(trips));
+    localStorage.setItem('trekko-active-trip', newTrip.id);
+  } else {
+    localStorage.setItem('trekko-active-trip', existing.id);
+  }
+  window.location.href = 'timeline.html';
+}
 
 function filtrar(tipo, btn) {
   current = tipo;
@@ -106,7 +93,24 @@ function renderGrid() {
     div.className = 'rcard';
     var daysHTML = r.dias.map(function(d,i){return '<div class="rcard-day"><div class="rcard-day-n">Dia '+(i+1)+'</div><div class="rcard-day-txt">'+d+'</div></div>';}).join('');
     var tagsHTML = r.tipo.map(function(t){return '<span class="rcard-tag">'+t+'</span>';}).join('');
-    div.innerHTML = '<div class="rcard-thumb"><img class="rcard-img" src="'+r.img+'" alt="'+r.title+'" onerror="this.style.background=\'#1e3a5f\';this.src=\'\'"><span class="rcard-badge badge-'+r.nivel+'">'+(r.nivel==='facil'?'Fácil':r.nivel==='medio'?'Médio':'Aventura')+'</span></div><div class="rcard-body"><div class="rcard-title">'+r.title+'</div><div class="rcard-dest">📍 '+r.dest+' · '+r.duracao+'</div><div class="rcard-tags">'+tagsHTML+'</div><div class="rcard-days">'+daysHTML+'</div><div class="rcard-footer"><div class="rcard-price">'+r.preco+'</div><button class="rcard-btn" onclick="window.location.href=\'index.html\'">Ver rota ✈️</button></div></div>';
+    
+    var thumb = document.createElement('div');
+    thumb.className = 'rcard-thumb';
+    var img = document.createElement('img');
+    img.className = 'rcard-img';
+    img.src = r.img;
+    img.alt = r.title;
+    img.onerror = function() { this.style.background = '#1e3a5f'; this.src = ''; };
+    thumb.appendChild(img);
+    var badgeText = r.nivel === 'facil' ? 'Fácil' : (r.nivel === 'medio' ? 'Médio' : 'Aventura');
+    thumb.innerHTML += '<span class="rcard-badge badge-' + r.nivel + '">' + badgeText + '</span>';
+    
+    var body = document.createElement('div');
+    body.className = 'rcard-body';
+    body.innerHTML = '<div class="rcard-title">'+r.title+'</div><div class="rcard-dest">📍 '+r.dest+' · '+r.duracao+'</div><div class="rcard-tags">'+tagsHTML+'</div><div class="rcard-days">'+daysHTML+'</div><div class="rcard-footer"><div class="rcard-price">'+r.preco+'</div><button class="rcard-btn" onclick="verRota('+r.id+')">Ver rota ✈️</button></div>';
+    
+    div.appendChild(thumb);
+    div.appendChild(body);
     grid.appendChild(div);
   });
 }

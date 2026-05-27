@@ -5,86 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Meu Perfil — Trekko</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --navy:#0e1c2f; --blue:#1a5cff; --green:#22c55e; --orange:#f59e0b; }
-  body { font-family: 'Nunito', sans-serif; background: #0b1623; color: white; min-height: 100vh; }
-  a { text-decoration: none; color: inherit; }
-  .page-nav { position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px;padding:0 40px;height:64px;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07); }
-  .page-nav-logo { display:flex;align-items:center;gap:10px; }
-  .page-nav-logo img { width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center 18%; }
-  .nav-logo-txt { font-size:18px;font-weight:900;color:white; }
-  .nav-logo-txt em { font-style:normal;color:var(--green); }
-  .back-btn { display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.7);cursor:pointer;transition:all .2s; }
-  .back-btn:hover { background:rgba(255,255,255,.14);color:white; }
-  .page-wrap { max-width:1100px;margin:0 auto;padding:32px 40px 60px; }
-  .card { background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:24px;margin-bottom:20px; }
-  .card-title { font-size:15px;font-weight:900;color:white;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06); }
-  .form-group { margin-bottom:16px; }
-  .form-label { font-size:11px;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:block; }
-  .form-input { width:100%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;color:white;outline:none;transition:all .2s; }
-  .form-input:focus { border-color:var(--green);background:rgba(34,197,94,.06); }
-  .form-input::placeholder { color:rgba(255,255,255,.3); }
-  .btn { background:var(--green);border:none;border-radius:12px;padding:13px 24px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:white;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px; }
-  .btn:hover { filter:brightness(1.08);transform:translateY(-1px); }
-  .btn-outline { background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8); }
-  .btn-outline:hover { background:rgba(255,255,255,.14);color:white;transform:none; }
-  .badge { font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;display:inline-block; }
-  .bg { background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.2); }
-  .bb { background:rgba(26,92,255,.12);color:#6d9fff;border:1px solid rgba(26,92,255,.2); }
-  .bo { background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.2); }
-  .br2 { background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.2); }
-  @media(max-width:768px) { .page-nav{padding:0 16px;} .page-wrap{padding:20px 16px 40px;} }
-</style>
-  <style>
-    .profile-header { display:flex;align-items:center;gap:24px;padding:32px;background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:24px;margin-bottom:24px; }
-    .profile-avatar { width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;position:relative; }
-    .profile-avatar-edit { position:absolute;bottom:0;right:0;width:28px;height:28px;border-radius:50%;background:var(--green);border:2px solid #0b1623;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer; }
-    .profile-info h2 { font-size:22px;font-weight:900;color:white;margin-bottom:4px; }
-    .profile-info p { font-size:14px;color:#8fa3b8;margin-bottom:10px; }
-    .profile-stats { display:flex;gap:12px;flex-wrap:wrap; }
-    .profile-stat { background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px 16px;text-align:center; }
-    .profile-stat-val { font-size:18px;font-weight:900;color:var(--green); }
-    .profile-stat-label { font-size:11px;color:#8fa3b8;font-weight:600; }
-
-    .tabs { display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:24px; }
-    .tab { padding:12px 20px;font-size:14px;font-weight:700;color:rgba(255,255,255,.5);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s; }
-    .tab.active { color:white;border-bottom-color:var(--blue); }
-    .tab-content { display:none; }
-    .tab-content.active { display:block;animation:fadeIn .3s ease; }
-    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-    .fav-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
-    .fav-card { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .2s; }
-    .fav-card:hover { transform:translateY(-3px);border-color:rgba(255,255,255,.15); }
-    .fav-card-img { width:100%;height:100px;object-fit:cover;display:block;background:linear-gradient(135deg,#0f1e2e,#1e3a5f); }
-    .fav-card-body { padding:10px 12px; }
-    .fav-card-name { font-size:14px;font-weight:800;color:white; }
-    .fav-card-meta { font-size:11px;color:#8fa3b8;margin-top:2px; }
-
-    .history-item { display:flex;align-items:center;gap:14px;padding:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;margin-bottom:10px;transition:all .2s; }
-    .history-item:hover { background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14); }
-    .history-icon { font-size:22px;flex-shrink:0; }
-    .history-info { flex:1; }
-    .history-name { font-size:14px;font-weight:800;color:white; }
-    .history-meta { font-size:12px;color:#8fa3b8;margin-top:2px; }
-    .history-date { font-size:11px;color:rgba(255,255,255,.3);font-weight:600; }
-
-    .badge-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
-    .badge-item { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;text-align:center;transition:all .2s; }
-    .badge-item.earned { border-color:rgba(34,197,94,.3);background:rgba(34,197,94,.06); }
-    .badge-item:not(.earned) { opacity:.4; }
-    .badge-emoji { font-size:32px;margin-bottom:8px;display:block; }
-    .badge-name { font-size:13px;font-weight:800;color:white;margin-bottom:3px; }
-    .badge-desc { font-size:11px;color:#8fa3b8; }
-
-    .edit-row { display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px; }
-    @media(max-width:768px) {
-      .fav-grid,.badge-grid { grid-template-columns:1fr 1fr; }
-      .edit-row { grid-template-columns:1fr; }
-      .profile-header { flex-direction:column;text-align:center; }
-    }
-  </style>
+  <link rel="stylesheet" href="perfil.css">
 </head>
 <body>
   <nav class="page-nav">
@@ -119,6 +40,7 @@
     <!-- Tabs -->
     <div class="tabs">
       <div class="tab active" onclick="switchProfileTab('favs',this)">❤️ Favoritos</div>
+      <div class="tab" onclick="switchProfileTab('roteiros',this)">🗺️ Roteiros</div>
       <div class="tab" onclick="switchProfileTab('history',this)">🕐 Histórico</div>
       <div class="tab" onclick="switchProfileTab('badges',this)">🏆 Badges</div>
       <div class="tab" onclick="switchProfileTab('edit',this)">⚙️ Editar perfil</div>
@@ -128,6 +50,13 @@
     <div class="tab-content active" id="tab-favs">
       <div class="fav-grid" id="fav-grid">
         <div style="grid-column:1/-1;text-align:center;padding:40px;color:#8fa3b8">Carregando favoritos...</div>
+      </div>
+    </div>
+
+    <!-- Roteiros -->
+    <div class="tab-content" id="tab-roteiros">
+      <div class="fav-grid" id="roteiros-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:#8fa3b8">Carregando roteiros...</div>
       </div>
     </div>
 
@@ -249,7 +178,18 @@
       else {
         grid.innerHTML = favs.map(function(id){
           var imgKey = DEST_IMGS_MAP[id] || 'brazil,travel';
-          return '<div class="fav-card"><img class="fav-card-img" src="https://source.unsplash.com/300x150/?'+imgKey+'" onerror="this.style.background='#1e3a5f';this.src=''"/><div class="fav-card-body"><div class="fav-card-name">Destino '+id.toUpperCase()+'</div><div class="fav-card-meta">Salvo nos favoritos</div></div></div>';
+          return '<div class="fav-card"><img class="fav-card-img" src="https://source.unsplash.com/300x150/?'+imgKey+'" onerror="this.style.background=\'#1e3a5f\';this.src=\'\'"/><div class="fav-card-body"><div class="fav-card-name">Destino '+id.toUpperCase()+'</div><div class="fav-card-meta">Salvo nos favoritos</div></div></div>';
+        }).join('');
+      }
+
+      // Render roteiros
+      var roteiros = JSON.parse(localStorage.getItem('trekko-trips')||'[]');
+      var rGrid = document.getElementById('roteiros-grid');
+      if(!roteiros.length){ rGrid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:#8fa3b8">Nenhum roteiro salvo ainda.<br><a href="roteiros.html" style="color:var(--green);font-weight:700">Explorar roteiros →</a></div>'; }
+      else {
+        rGrid.innerHTML = roteiros.map(function(r){
+          var numDias = r.days ? r.days.length : 0;
+          return '<div class="fav-card" style="cursor:pointer" onclick="abrirRoteiro(\''+r.id+'\')"><img class="fav-card-img" src="https://loremflickr.com/300/150/' + encodeURIComponent(r.name.split(' ')[0]) + '" onerror="this.style.background=\'#1e3a5f\';this.src=\'\'"/><div class="fav-card-body"><div class="fav-card-name">' + r.name + '</div><div class="fav-card-meta">' + numDias + ' dias · ' + (r.startDate || '') + '</div></div></div>';
         }).join('');
       }
 
@@ -269,6 +209,11 @@
         return '<div class="badge-item'+(earned?' earned':'')+'"><span class="badge-emoji">'+b.icon+'</span><div class="badge-name">'+b.name+'</div><div class="badge-desc">'+b.desc+'</div>'+(earned?'<div style="margin-top:8px"><span class="badge bg">✅ Conquistado</span></div>':'')+'</div>';
       }).join('');
     });
+
+    function abrirRoteiro(id) {
+      localStorage.setItem('trekko-active-trip', id);
+      window.location.href = 'timeline.html';
+    }
 
     function switchProfileTab(id, el){
       document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
@@ -306,7 +251,7 @@
       var reader = new FileReader();
       reader.onload = function(e){
         var av = document.getElementById('profile-avatar');
-        av.innerHTML = '<img src="'+e.target.result+'" style="width:90px;height:90px;border-radius:50%;object-fit:cover"/><div class="profile-avatar-edit" onclick="document.getElementById('avatar-input').click()">✏️</div><input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="updateAvatar(this)"/>';
+        av.innerHTML = '<img src="'+e.target.result+'" style="width:90px;height:90px;border-radius:50%;object-fit:cover"/><div class="profile-avatar-edit" onclick="document.getElementById(\'avatar-input\').click()">✏️</div><input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="updateAvatar(this)"/>';
       };
       reader.readAsDataURL(input.files[0]);
     }

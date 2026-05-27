@@ -5,96 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Resultados — Trekko</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --navy:#0e1c2f; --blue:#1a5cff; --green:#22c55e; --orange:#f59e0b; }
-  body { font-family: 'Nunito', sans-serif; background: #0b1623; color: white; min-height: 100vh; }
-  a { text-decoration: none; color: inherit; }
-  .page-nav { position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px;padding:0 40px;height:64px;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.07); }
-  .page-nav-logo { display:flex;align-items:center;gap:10px; }
-  .page-nav-logo img { width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center 18%; }
-  .nav-logo-txt { font-size:18px;font-weight:900;color:white; }
-  .nav-logo-txt em { font-style:normal;color:var(--green); }
-  .back-btn { display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.7);cursor:pointer;transition:all .2s; }
-  .back-btn:hover { background:rgba(255,255,255,.14);color:white; }
-  .page-wrap { max-width:1100px;margin:0 auto;padding:32px 40px 60px; }
-  .card { background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:24px;margin-bottom:20px; }
-  .card-title { font-size:15px;font-weight:900;color:white;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06); }
-  .form-group { margin-bottom:16px; }
-  .form-label { font-size:11px;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:block; }
-  .form-input { width:100%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;color:white;outline:none;transition:all .2s; }
-  .form-input:focus { border-color:var(--green);background:rgba(34,197,94,.06); }
-  .form-input::placeholder { color:rgba(255,255,255,.3); }
-  .btn { background:var(--green);border:none;border-radius:12px;padding:13px 24px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:white;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px; }
-  .btn:hover { filter:brightness(1.08);transform:translateY(-1px); }
-  .btn-outline { background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8); }
-  .btn-outline:hover { background:rgba(255,255,255,.14);color:white;transform:none; }
-  .badge { font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;display:inline-block; }
-  .bg { background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.2); }
-  .bb { background:rgba(26,92,255,.12);color:#6d9fff;border:1px solid rgba(26,92,255,.2); }
-  .bo { background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.2); }
-  .br2 { background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.2); }
-  @media(max-width:768px) { .page-nav{padding:0 16px;} .page-wrap{padding:20px 16px 40px;} }
-</style>
-  <style>
-    .results-layout { display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start; }
-    .filters-panel { background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:22px;position:sticky;top:84px; }
-    .filter-section { margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.06); }
-    .filter-section:last-child { border-bottom:none;margin-bottom:0;padding-bottom:0; }
-    .filter-title { font-size:12px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px; }
-    .filter-opt { display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;transition:all .15s; }
-    .filter-opt:hover .filter-opt-label { color:white; }
-    .filter-check { width:18px;height:18px;border-radius:5px;border:1.5px solid rgba(255,255,255,.2);background:transparent;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s; }
-    .filter-opt.active .filter-check { background:var(--green);border-color:var(--green); }
-    .filter-opt-label { font-size:14px;font-weight:600;color:rgba(255,255,255,.7); }
-    .filter-opt-count { margin-left:auto;font-size:11px;color:rgba(255,255,255,.3);font-weight:600; }
-    .range-wrap { padding-top:4px; }
-    .range-inputs { display:flex;align-items:center;gap:8px;margin-bottom:10px; }
-    .range-input { flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 10px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:white;outline:none;width:100%; }
-    .range-input:focus { border-color:var(--green); }
-    .range-sep { color:rgba(255,255,255,.3);font-weight:700; }
-    .stars-row { display:flex;gap:6px;flex-wrap:wrap; }
-    .star-opt { background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;color:rgba(255,255,255,.6);cursor:pointer;transition:all .15s; }
-    .star-opt:hover,.star-opt.active { background:rgba(245,158,11,.15);border-color:var(--orange);color:var(--orange); }
+  <link rel="stylesheet" href="resultados.css">
 
-    .results-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:20px; }
-    .results-count { font-size:14px;font-weight:600;color:#8fa3b8; }
-    .results-sort { display:flex;align-items:center;gap:8px; }
-    .sort-label { font-size:13px;font-weight:600;color:rgba(255,255,255,.5); }
-    .sort-select { background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 12px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:white;outline:none;cursor:pointer; }
-    .sort-select option { background:#0e1c2f; }
-
-    .result-card { display:flex;gap:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:16px;margin-bottom:14px;cursor:pointer;transition:all .22s; }
-    .result-card:hover { border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06);transform:translateX(4px); }
-    .result-img { width:160px;height:120px;border-radius:12px;object-fit:cover;flex-shrink:0;background:linear-gradient(135deg,#0f1e2e,#1e3a5f); }
-    .result-info { flex:1;min-width:0; }
-    .result-name { font-size:18px;font-weight:900;color:white;margin-bottom:4px; }
-    .result-meta { font-size:13px;color:#8fa3b8;margin-bottom:10px; }
-    .result-badges { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px; }
-    .result-features { display:flex;gap:8px;flex-wrap:wrap; }
-    .result-feature { font-size:12px;font-weight:600;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:4px; }
-    .result-price-col { text-align:right;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;flex-shrink:0;min-width:130px; }
-    .result-price-from { font-size:11px;color:#8fa3b8; }
-    .result-price { font-size:24px;font-weight:900;color:var(--green); }
-    .result-cta { background:var(--green);border:none;border-radius:10px;padding:10px 18px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:white;cursor:pointer;transition:all .2s; }
-    .result-cta:hover { filter:brightness(1.1); }
-    .result-tag { position:absolute;top:10px;left:10px; }
-
-    .no-results { text-align:center;padding:60px 20px;color:#8fa3b8; }
-    .no-results-icon { font-size:48px;margin-bottom:14px;display:block; }
-
-    .mobile-filter-btn { display:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 18px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:white;cursor:pointer;margin-bottom:16px; }
-
-    @media(max-width:900px) {
-      .results-layout { grid-template-columns:1fr; }
-      .filters-panel { display:none;position:fixed;inset:0;z-index:400;border-radius:0;overflow-y:auto;top:0; }
-      .filters-panel.mobile-open { display:block; }
-      .mobile-filter-btn { display:block; }
-      .result-card { flex-direction:column; }
-      .result-img { width:100%;height:160px; }
-      .result-price-col { flex-direction:row;align-items:center;min-width:auto;margin-top:8px; }
-    }
-  </style>
 </head>
 <body>
   <nav class="page-nav">
@@ -113,14 +25,14 @@
     </div>
 
     <button class="mobile-filter-btn" onclick="document.getElementById('filters-panel').classList.toggle('mobile-open')">
-      🎛️ Filtros
+      Filtros
     </button>
 
     <div class="results-layout">
       <!-- Filters -->
       <div class="filters-panel" id="filters-panel">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-          <div style="font-size:16px;font-weight:900;color:white">🎛️ Filtros</div>
+          <div style="font-size:16px;font-weight:900;color:white">Filtros</div>
           <button onclick="clearAllFilters()" style="background:none;border:none;color:rgba(255,255,255,.4);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer">Limpar</button>
           <button class="back-btn" onclick="document.getElementById('filters-panel').classList.remove('mobile-open')" style="display:none;padding:4px 10px" id="close-filters-btn">✕</button>
         </div>
@@ -129,27 +41,27 @@
           <div class="filter-title">Categoria</div>
           <div class="filter-opt active" onclick="toggleFilter(this,'cat','voos')" data-key="cat" data-val="voos">
             <div class="filter-check">✓</div>
-            <span class="filter-opt-label">✈️ Voos</span>
+            <span class="filter-opt-label">Voos</span>
             <span class="filter-opt-count">18</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'cat','hoteis')" data-key="cat" data-val="hoteis">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🏨 Hotéis</span>
+            <span class="filter-opt-label">Hotéis</span>
             <span class="filter-opt-count">16</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'cat','onibus')" data-key="cat" data-val="onibus">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🚌 Ônibus</span>
+            <span class="filter-opt-label">Ônibus</span>
             <span class="filter-opt-count">16</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'cat','chales')" data-key="cat" data-val="chales">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🏡 Chalés</span>
+            <span class="filter-opt-label">Chalés</span>
             <span class="filter-opt-count">16</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'cat','atracoes')" data-key="cat" data-val="atracoes">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🌿 Atrações</span>
+            <span class="filter-opt-label">Atrações</span>
             <span class="filter-opt-count">16</span>
           </div>
         </div>
@@ -195,15 +107,15 @@
           <div class="filter-title">Tag</div>
           <div class="filter-opt" onclick="toggleFilter(this,'tag','hot')" data-key="tag" data-val="hot">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🔥 Popular</span>
+            <span class="filter-opt-label">Popular</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'tag','new')" data-key="tag" data-val="new">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">✨ Novo</span>
+            <span class="filter-opt-label">Novo</span>
           </div>
           <div class="filter-opt" onclick="toggleFilter(this,'tag','promo')" data-key="tag" data-val="promo">
             <div class="filter-check"></div>
-            <span class="filter-opt-label">🏷️ Promoção</span>
+            <span class="filter-opt-label">Promoção</span>
           </div>
         </div>
       </div>
@@ -304,7 +216,7 @@
         return;
       }
       list.innerHTML = items.map(function(item){
-        var tagHtml = item.tag ? '<span class="badge '+(item.tag==='hot'?'br2':item.tag==='new'?'bg':'bo')+'">'+(item.tag==='hot'?'🔥 Popular':item.tag==='new'?'✨ Novo':'🏷️ Promo')+'</span>' : '';
+        var tagHtml = item.tag ? '<span class="badge '+(item.tag==='hot'?'br2':item.tag==='new'?'bg':'bo')+'">'+(item.tag==='hot'?'Popular':item.tag==='new'?'Novo':'Promo')+'</span>' : '';
         var priceHtml = item.price > 0 ? 'R$ '+item.price.toLocaleString('pt-BR') : 'Gratuito';
         return '<div class="result-card" onclick="goToReserva(''+item.name+'',''+item.id+'')">'
           +'<img class="result-img" src="https://source.unsplash.com/280x160/?'+encodeURIComponent(item.name)+',brazil" onerror="this.style.background='#1e3a5f';this.src=''"/>'
